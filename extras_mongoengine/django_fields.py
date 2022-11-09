@@ -8,8 +8,7 @@ from django.db.models.fields.files import FieldFile
 from django.core.files.base import File
 from django.core.files.storage import default_storage
 
-from django.utils.encoding import force_str, force_text
-
+from django.utils.encoding import force_str
 
 class LocalStorageFileField(BaseField):
 
@@ -59,7 +58,7 @@ class LocalStorageFileField(BaseField):
         instance._mark_as_changed(key)
 
     def get_directory_name(self):
-        return os.path.normpath(force_text(
+        return os.path.normpath(force_str(
                 datetime.datetime.now().strftime(force_str(self.upload_to))))
 
     def get_filename(self, filename):
