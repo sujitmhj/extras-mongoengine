@@ -34,7 +34,7 @@ class LocalStorageFileField(BaseField):
 
         file = instance._data.get(self.name)
 
-        if type(file) == str or file is None:
+        if isinstance(file, str) or file is None:
             attr = self.proxy_class(instance, self, file)
             instance._data[self.name] = attr
 
