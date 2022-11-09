@@ -2,7 +2,7 @@ import os
 import datetime
 
 from mongoengine.base import BaseField
-from mongoengine.python_support import str_types
+
 
 from django.db.models.fields.files import FieldFile
 from django.core.files.base import File
@@ -34,7 +34,7 @@ class LocalStorageFileField(BaseField):
 
         file = instance._data.get(self.name)
 
-        if isinstance(file, str_types) or file is None:
+        if type(file) == str or file is None:
             attr = self.proxy_class(instance, self, file)
             instance._data[self.name] = attr
 
